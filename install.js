@@ -1,5 +1,9 @@
-var prompt = require('prompt');
 const exec = require('child_process').exec;
+exec('npm install', (error, stdout, stderr) => {
+
+if (error) throw error;
+
+var prompt = require('prompt');
 var jsonfile = require('jsonfile')
 
 var properties = [
@@ -46,3 +50,5 @@ function onErr(err) {
     console.log(err);
     return 1;
 }
+
+});
