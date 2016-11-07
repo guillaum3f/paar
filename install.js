@@ -48,19 +48,18 @@ prompt.get(properties, function (err, result) {
     if (err) { return onErr(err); }
     var root = __dirname+'/'+result.name;
     var cmd = {};
+    cmd.download = 'git clone https://github.com/guillaum3f/inode24.git '+root;
     if(result['static-content-enabled'] === true) {
-        cmd.download = 'git clone https://github.com/guillaum3f/inode24.git '+root;
         cmd.install = 'cd '+root+' && npm install && cd static && bower install';
     } else {
-        cmd.download = 'echo "no download required (static)"';
-        cmd.install = 'cd '+root+' && npm install';
+        cmd.install = 'cd '+root+' && npm install && cd static && rm -rf *';
     }
     exec(cmd.download, (error, stdout, stderr) => {
         exec(cmd.install, (error, stdout, stderr) => {
-            var file = root+'/config.json'
-            var obj = result
+            var file = root+'/config.json';
+            var obj = result;
             jsonfile.writeFile(file, obj, {spaces: 2}, function (err) {
-            if(err) throw(err)
+                if(err) throw(err)
             })
         });
     });
