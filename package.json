@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "findit": "^2.0.0",
     "jsonfile": "^2.4.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "valid-url": "^1.0.9"
   }
 }
